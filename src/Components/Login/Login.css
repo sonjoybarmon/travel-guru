@@ -1,0 +1,87 @@
+.form_wrapper{
+    margin-top: 30px;
+}
+.log_form{
+    padding: 20px;
+    width: 570px;
+    height: 420px;
+    background: rgba(255, 255, 255, 0.11);
+    border: 1px solid #ABABAB;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+.form_border{
+    background:none;
+    border:none;
+    outline: none;
+    border-bottom: 1px solid #C5C5C5;
+    color: #000000;
+    padding-bottom: 15px;
+    margin-top: 40px;
+}
+.form_border::placeholder{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #ffffff;
+}
+.log_form h4{
+    color: #000000;
+    font-weight: 700;
+}
+.forgot{
+    margin-top: 30px;
+}
+.forgot label{
+    color: #ffff;
+    font-size: 16px;
+}
+.submit_btn{
+    padding: 14px 210px;
+    width: 461px;
+    height: 50px;
+    background: #F9A51A;
+    margin:auto;
+}
+.login_btn{
+    margin-top: 30px;
+}
+.password{
+    color: white;
+    font-size: 16px;
+}
+.password:hover{
+    color: white;
+    text-decoration: none;
+}
+.span_link{
+    margin-top: 20px;
+    font-size: 18px;
+}
+.form_bottom{
+    margin: 20px;
+}
+.form_bottom span{
+    background:#AAAAAA;
+    height: 1px;
+    line-height: 40px;
+    width: 200px;
+    margin: 5px;
+}
+.form_bottom h6{
+    color:#ffffff;
+    margin: 5px;
+}
+.fb-btn{
+    width: 461px;
+    height: 51px;
+    background: #FFFFFF;
+    border: 1px solid #C7C7C7;
+    box-sizing: border-box;
+    border-radius: 57px;
+    margin-top: 10px;
+}
+.fbToGoogle{
+    margin-left: 20px;
+}
