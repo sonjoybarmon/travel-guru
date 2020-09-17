@@ -6,7 +6,7 @@ import logo from '../../images/Logo.png';
 import './Header.css';
 const Header = () => {
     const [loggedInUser,setLoggedInUser] = useContext(UserContext)
-
+    console.log(loggedInUser)
     return (
         <Navbar className='our_menu' expand="lg">
             <Container>
@@ -24,9 +24,9 @@ const Header = () => {
                         <Nav.Link > <Link to='/blog' className='menu_list'>Blog</Link> </Nav.Link>
                         <Nav.Link > <Link to='/contact' className='menu_list'>Contact</Link> </Nav.Link>
 
-                        {!loggedInUser.email ?<Link to='/login'><button className='btn menu_btn'>Login</button></Link> : <Link to='/'><button className='btn menu_btn'>sign Out</button></Link>
+                        {!loggedInUser.emails ?<Link to='/login'><button className='btn menu_btn'>Login</button></Link> : <Link to='/'><button className='btn menu_btn'>sign Out</button></Link>
                        }
-                       <h6 style={{lineHeight:'40px',marginLeft:'5px', color:'#ffffff'}}>{!loggedInUser.email ? 'User' :` ${loggedInUser.name}`}</h6>
+                       <h6 style={{lineHeight:'40px',marginLeft:'5px', color:'#ffffff'}}>{!loggedInUser.emails ? 'User' : `${loggedInUser.name}` }</h6>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

@@ -18,7 +18,13 @@ import Contact from './Components/Contact/Contact';
 
 export const UserContext = createContext()
 function App() {
-  const [loggedInUser , setLoggedInUser]= useState({}) 
+  const [loggedInUser , setLoggedInUser]= useState({
+        // isSignIn : false,
+        name :'',
+        emails :'',
+        photo :'',
+        password :'',
+  }) 
   return (
   <UserContext.Provider value={[loggedInUser,setLoggedInUser]}>
     <Router> 
