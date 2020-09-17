@@ -16,18 +16,18 @@ const Login = () => {
     let location = useLocation();
     let { from } = location.state || { from: { pathname: "/" } };
 
+    
+
     if (firebase.apps.length === 0) {
         firebase.initializeApp(firebaseConfig);
     }
     const googleLogIn =()=>{
-        var provider = new firebase.auth.GoogleAuthProvider();
-
+        const provider = new firebase.auth.GoogleAuthProvider();
         firebase.auth().signInWithPopup(provider).then(function(result) {
             const {displayName , email} = result.user;
             const googleNewUser = {name : displayName ,  email}
             setLoggedInUser(googleNewUser);
             history.replace(from);
-            console.log(googleNewUser);
           })
           
           .catch(function(error) {
@@ -43,7 +43,17 @@ const Login = () => {
     }
     
     const fbLogIn =()=>{
-
+        const provider = new firebase.auth.FacebookAuthProvider();
+        firebase.auth().signInWithPopup(provider)
+        .then(function(result) {
+        var token = result.credential.accessToken;
+        var user = result.user;
+        }).catch(function(error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        var email = error.email;
+        var credential = error.credential;
+        });
     }
     
     return (

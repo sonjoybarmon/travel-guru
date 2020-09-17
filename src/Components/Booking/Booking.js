@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Header from '../Header/Header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight, faCoffee } from '@fortawesome/free-solid-svg-icons';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import place from '../../FakeData/Place';
 import { Form } from 'react-bootstrap';
 import './Booking.css'
@@ -11,7 +11,6 @@ const Booking = () => {
     const {Id} = useParams();
     const booking = place.find(bk => bk.id === Id); 
     const {name , details,origin} = booking;
-// console.log(booking, Id);
     return (
         <div className="banner_area">
             <div className="menu_area">
@@ -42,7 +41,7 @@ const Booking = () => {
                                             <input className='bkg_input1' type="date" />
                                             <input className='bkg_input1' type="date" />
                                         </div>
-                                        <button className='btn bkg_btn'>Start Booking</button>
+                                       <Link to='/destination'><button className='btn bkg_btn'>Start Booking</button></Link> 
                                     </Form.Group>
                                 </div>
                             </div>
