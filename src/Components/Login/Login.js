@@ -44,8 +44,8 @@ const Login = () => {
     }
     
     const fbLogIn =()=>{
-        const provider = new firebase.auth.FacebookAuthProvider();
-        firebase.auth().signInWithPopup(provider)
+        const fbProvider = new firebase.auth.FacebookAuthProvider();
+        firebase.auth().signInWithPopup(fbProvider)
         .then(function(result) {
             const {displayName , email} = result.user;
             const googleNewUser = {name : displayName ,  emails:email}
