@@ -30,16 +30,10 @@ const Login = () => {
             setLoggedInUser(googleNewUser);
             history.replace(from);
           })
-          
           .catch(function(error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // The email of the user's account used.
-            var email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
-            var credential = error.credential;
-            // ...
+            const newUserInfo = { ...loggedInUser };
+                newUserInfo.message = error.message;
+                setLoggedInUser(newUserInfo);
           });
     }
     
@@ -53,24 +47,31 @@ const Login = () => {
             history.replace(from);
 
         }).catch(function(error) {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        var email = error.email;
-        var credential = error.credential;
-        });
+            const newUserInfo = { ...loggedInUser };
+                    newUserInfo.message = error.message;
+                    setLoggedInUser(newUserInfo);
+          });
     }
     // submit form all function
     const handleSubmit = (e) => {
         if (user && loggedInUser.emails && loggedInUser.password) {
-           firebase.auth().createUserWithEmailAndPassword(loggedInUser.name,loggedInUser.emails, loggedInUser.password)
+           firebase.auth().createUserWithEmailAndPassword(loggedInUser.emails, loggedInUser.password)
             .then(res => {
-                const {displayName , email} = res.user;
-                const googleNewUser = {name : displayName ,  emails:email}
-                setLoggedInUser(googleNewUser);
+                // const {displayName , email} = res.user;
+                // const googleNewUser = {name : displayName ,  emails:email}
+                // setLoggedInUser(googleNewUser);
                 history.replace(from);
-                // handleResponse(res, true);
-                // console.log(res)
-            })
+                user.updateProfile({
+                    displayName:loggedInUser.name ,
+                })
+                
+        })
+        .catch(function(error) {
+            const newUserInfo = { ...loggedInUser };
+                    newUserInfo.message = error.message;
+                    newUserInfo.success = false;
+                    setLoggedInUser(newUserInfo);
+          });
         }
         if(!user && loggedInUser.emails && loggedInUser.password){
             firebase.auth().signInWithEmailAndPassword(loggedInUser.emails, loggedInUser.password)
@@ -80,17 +81,24 @@ const Login = () => {
                 setLoggedInUser(googleNewUser);
                 history.replace(from);
             })
+            .catch(error => {
+                const newUserInfo = { ...loggedInUser };
+                newUserInfo.message = error.message;
+                newUserInfo.success = false;
+                setLoggedInUser(newUserInfo);
+            });
         } 
         e.preventDefault();
     }
     const handleChange = (e) => {
         let emailValid = true;
             if (e.target.name === 'emails'){
-              emailValid = /\S+@\S+\.\S+/.test(e.target.value); 
+              emailValid = /\S+@\S+\.\S+/.test(e.target.value);
         }
         if(e.target.name === "password"){
             const passwordValid = e.target.value.length >= 6;
             emailValid = passwordValid;
+
         }
         if(emailValid) {
             const newUserInfo = {...loggedInUser};
@@ -127,11 +135,11 @@ const Login = () => {
                 </Form.Group>
 
                 <div className='d-flex justify-content-center login_btn'>
-                    <input className='submit_btn' variant="primary" type="submit" value='Login' />
-                </div>
+                    <input className='submit_btn' variant="primary" type="submit" value='Log In' />
+                </div> 
                <div className='text-center text-light span_link'>
                    {user ? 
-                       <span>You alrady have an account? <button className='btn btn-outline-warning' onClick={() => setUser(!user)}> Log in</button> </span> : <span>Don’t have an account? <button className='btn btn-outline-warning' onClick={() => setUser(!user)}> Create an account</button> </span>
+                       <span>You alrady have an account? <button className='btn btn-outline-warning' onClick={() =>setUser(!user)}> Log in </button> </span> : <span>Don’t have an account? <button className='btn btn-outline-warning' onClick={() => setUser(!user)}> Create an account</button> </span>
                    }
                </div>
             </Form>

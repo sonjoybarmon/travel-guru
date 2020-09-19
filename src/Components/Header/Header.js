@@ -6,7 +6,6 @@ import logo from '../../images/Logo.png';
 import './Header.css';
 const Header = () => {
     const [loggedInUser,setLoggedInUser] = useContext(UserContext)
-    console.log(loggedInUser)
     return (
         <Navbar className='our_menu' expand="lg">
             <Container>

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import Header from '../Header/Header';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft, faArrowRight, faCoffee } from '@fortawesome/free-solid-svg-icons';
 import { Link, useParams } from 'react-router-dom';
 import place from '../../FakeData/Place';
 import { Form } from 'react-bootstrap';
-import './Booking.css'
+import './Booking.css';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faArrowLeft, faArrowRight, faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 const Booking = () => {
     const {Id} = useParams();
